@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  g-nginx:
+    build: ./build/nginx
+    env_file: 
+      - ./env/nginx/default.env
+    network_mode: "host"
+    image: g-nginx:1.0.0
+    container_name: g-nginx
+    restart: always
+    volumes:
+      - ./data-volumes/nginx/share-file/:/share-file/
+      - ./data-volumes/nginx/conf.d/:/etc/nginx/conf.d/
+      - ./data-volumes/nginx/ca_cert/:/etc/nginx/ca_cert/

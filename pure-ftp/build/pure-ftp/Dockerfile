@@ -1,0 +1,5 @@
+FROM stilliard/pure-ftpd
+
+ENV LANG C.UTF-8
+
+CMD /run.sh -c $MAXCLENTSNUMBER -C $MAXCLIENTSPERIP -l $LOGIN -E -j -R -P $PUBLICHOST

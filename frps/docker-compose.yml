@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  g-frps:
+    build: ./build/frps
+    env_file: 
+      - ./env/frps/default.env
+    network_mode: "host"
+    image: g-frps:1.0.0
+    container_name: g-frps
+    restart: always
+    volumes:
+      - ./data-volumes/frps/share-file:/share-file
+      - ./data-volumes/frps/frps.ini:/frps-home/frps.ini

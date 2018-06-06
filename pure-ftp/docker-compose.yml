@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  g-pure-ftp:
+    build: ./build/pure-ftp
+    env_file: 
+      - ./env/pure-ftp/default.env
+    image: g-pure-ftp:1.0.0
+    container_name: g-pure-ftp
+    restart: always
+    ports:
+      - "21:21"
+      - "30000-30009:30000-30009"
+    volumes:
+      - ./data-volumes/pure-ftp/share-file:/share-file
+      - ./data-volumes/pure-ftp/xiaoguo:/home/ftpusers/xiaoguo

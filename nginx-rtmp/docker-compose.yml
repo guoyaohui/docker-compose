@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  g-nginx-rtmp:
+    build: ./build/nginx-rtmp
+    env_file: 
+      - ./env/nginx-rtmp/default.env
+    ports:
+      - 21935:1935
+      - 28080:8080
+      - 28081:28081
+    image: g-nginx-rtmp:1.0.0
+    container_name: g-nginx-rtmp
+    restart: always
+    volumes:
+      - ./data-volumes/nginx-rtmp/vue-data/dist/:/vue-data/
+      - ./data-volumes/nginx-rtmp/video-data:/video-data
+      - ./data-volumes/nginx-rtmp/share-file:/share-file
+      - ./data-volumes/nginx-rtmp/conf.d:/etc/nginx/conf.d
+#      - ./data-volumes/nginx-rtmp/ca-cert:/ca-cert

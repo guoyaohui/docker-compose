@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  g-portainer:
+    build: ./build/portainer
+    network_mode: "bridge"
+    image: g-portainer:1.0.0
+    ports: 
+      - 8088:9000
+    volumes:
+      - ./data-volumes/portainer/data/:/data/
+      - /var/run/docker.sock:/var/run/docker.sock
+    container_name: g-portainer
+    restart: always
