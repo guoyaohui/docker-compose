@@ -11,3 +11,9 @@
 所有的docker-compose配置文件放在config-repo
 
 如果要使用这些docker-compose配置启动容器，需要先拷贝到在docker_container下相应的repo目录下面，然后才能进行启动
+
+
+### 1. .env和default.env区别
+在default.env中定义的变量是给container使用的。
+
+在.env中定义的变量是给docker-compose使用的。
