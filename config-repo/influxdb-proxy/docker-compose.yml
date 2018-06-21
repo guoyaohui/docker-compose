@@ -9,7 +9,6 @@ services:
     container_name: g-influxdb-proxy
     restart: always
     ports:
-      - 18086:8086
+      - 6666:6666
     volumes:
       - ./data-volumes/influxdb-proxy/share-file:/share-file
-      - ./data-volumes/influxdb-proxy/db-data:/var/lib/influxdb-proxy
