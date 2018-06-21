@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  g-redis:
+    build: ./build/redis
+    env_file: 
+      - ./env/redis/default.env
+    image: g-redis:1.0.0
+    container_name: g-redis
+    restart: always
+    ports:
+      - 8000:8000
+    volumes:
+      - ./data-volumes/redis/share-file:/share-file

@@ -9,8 +9,8 @@ services:
     container_name: g-pure-ftp
     restart: always
     ports:
-      - "21:21"
-      - "30000-30009:30000-30009"
+      - "40021:21"
+      - "${COMPOSE_MAP_PORTS}:${COMPOSE_MAP_PORTS}"
     volumes:
       - ./data-volumes/pure-ftp/share-file:/share-file
       - ./data-volumes/pure-ftp/xiaoguo:/home/ftpusers/xiaoguo
