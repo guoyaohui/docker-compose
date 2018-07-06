@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  g-influxdb-proxy:
+    build: ./build/influxdb-proxy
+    env_file: 
+      - ./env/influxdb-proxy/default.env
+    image: g-influxdb-proxy:1.0.0
+    container_name: g-influxdb-proxy
+    restart: always
+    ports:
+      - 6666:6666
+    volumes:
+      - ./data-volumes/influxdb-proxy/share-file:/share-file

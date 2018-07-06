@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  g-rancher2:
+    build: ./build/rancher2
+    env_file: 
+      - ./env/rancher2/default.env
+    image: g-rancher2:1.0.0
+    container_name: g-rancher2
+    restart: always
+    network_mode: host
+    volumes:
+      - ./data-volumes/rancher2/share-file:/share-file
