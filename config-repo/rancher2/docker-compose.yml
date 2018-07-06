@@ -8,6 +8,8 @@ services:
     image: g-rancher2:1.0.0
     container_name: g-rancher2
     restart: always
-    network_mode: host
+    ports:
+      - 60080:80
+      - 60443:443
     volumes:
       - ./data-volumes/rancher2/share-file:/share-file
