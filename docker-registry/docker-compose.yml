@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  g-registry:
+    build: ./build/registry
+    env_file: 
+      - ./env/registry/default.env
+    network_mode: "host"
+    image: g-registry:1.0.0
+    container_name: g-registry
+    restart: always
+    ports:
+      - 5000:5000
+    volumes:
+      - ./data-volumes/registry/share-file:/share-file
