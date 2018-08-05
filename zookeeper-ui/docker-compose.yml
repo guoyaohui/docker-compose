@@ -1,15 +1,25 @@
 version: "3"
 
 services:
-  g-zookeeper-ui:
-    build: ./build/zookeeper-ui
+  g-zookeeper:
+    build: zookeeper/build/zookeeper
     env_file: 
-      - ./env/zookeeper-ui/default.env
-    network_mode: "host"
-    image: g-zookeeper-ui:1.0.0
-    container_name: g-zookeeper-ui
+      - zookeeper/env/zookeeper/default.env
+    image: g-zookeeper:1.0.0
+    container_name: g-zookeeper
+    restart: always
+    ports:
+      - 2181:2181
+    volumes:
+      - ./data-volumes/zookeeper/share-file:/share-file
+  g-zkui:
+    build: build/zkui
+    env_file:
+      - env/zkui/default.env
+    image: g-zkui:1.0.0
+    container_name: g-zkui
     restart: always
     ports:
       - 9090:9090
     volumes:
-      - ./data-volumes/zookeeper-ui/share-file:/share-file
+      - ./data-volumes/zkui/share-file:/share-file
