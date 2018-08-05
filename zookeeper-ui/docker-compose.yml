@@ -13,9 +13,9 @@ services:
     volumes:
       - ./data-volumes/zookeeper/share-file:/share-file
   g-zkui:
-    build: build/zkui
+    build: zkui/build/zkui
     env_file:
-      - env/zkui/default.env
+      - zkui/env/zkui/default.env
     image: g-zkui:1.0.0
     container_name: g-zkui
     restart: always
