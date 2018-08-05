@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  g-zookeeper-ui:
+    build: ./build/zookeeper-ui
+    env_file: 
+      - ./env/zookeeper-ui/default.env
+    network_mode: "host"
+    image: g-zookeeper-ui:1.0.0
+    container_name: g-zookeeper-ui
+    restart: always
+    ports:
+      - 9090:9090
+    volumes:
+      - ./data-volumes/zookeeper-ui/share-file:/share-file
