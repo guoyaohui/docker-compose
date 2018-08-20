@@ -1,16 +1,16 @@
 version: '3.2'
 
 services:
-  xw_3319_mos_db:
+  xw_3320_mos_db:
     build: ./build/mysql
     network_mode: "bridge"
-    image: xw_3319_mos_db:1.0.0
+    image: xw_3320_mos_db:1.0.0
     env_file: 
       - ./env/mysql/default.env
     ports: 
-      - 3319:3306
+      - 3320:3306
     volumes:
       - ./data-volumes/mysql/share_files/:/share_files/
       - ./data-volumes/mysql/container_data/data/:/var/lib/mysql/
       - ./data-volumes/mysql/conf/:/etc/mysql/
-    container_name: xw_3319_mos_db
+    container_name: xw_3320_mos_db

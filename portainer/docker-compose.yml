@@ -8,7 +8,7 @@ services:
     ports: 
       - 8088:9000
     volumes:
-      - ./data-volumes/portainer/data/:/data/
+      - ./data-volumes/portainer/container_data/:/data/
       - /var/run/docker.sock:/var/run/docker.sock
     container_name: g-portainer
     restart: always
