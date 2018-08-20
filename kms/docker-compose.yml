@@ -1,0 +1,14 @@
+version: '3.2'
+
+services:
+  g_kms:
+    build: ./build/kms
+    network_mode: "bridge"
+    image: g_kms:1.0.0
+    env_file: 
+      - ./env/kms/default.env
+    ports: 
+      - 1688:1688
+    volumes:
+      - ./data-volumes/kms/share_files/:/share_files/
+    container_name: g_kms
