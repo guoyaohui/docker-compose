@@ -48,8 +48,8 @@ echo "执行完毕${all_k8s_node_need_execute_file_name}"
 # 5. 关闭 Swap
 swapoff -a
 # 永久关闭
-#要永久禁掉swap分区，打开如下文件注释掉swap那一行 
-# vim /etc/fstab
+#将含有swap的那一行进行注释
+sed -i 's/^.*swap/#&/g' /etc/fstab
 
 # 6. 关闭 SELinux
 sed -i 's/SELINUX=permissive/SELINUX=disabled/' /etc/sysconfig/selinux
