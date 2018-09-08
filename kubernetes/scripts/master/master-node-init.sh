@@ -57,6 +57,11 @@ kubectl  -n kube-system create -f ./dashboard
 dashboard_admin_file_name="./ui/dashboard-admin.yaml"
 kubectl create -f ${dashboard_admin_file_name}
 source /etc/profile
+
+# 添加slave的节点的启动脚本
+slave_node_start_file_name="slave-node-start.sh"
+rm -rf ${slave_node_start_file_name}
+sed -n '/^.*kubeadm join.*$/' tmp-log.out  >> ${slave_node_start_file_name}
 echo "请访问${master_node_ip}:30090以查看kubernetes的仪表盘"
 
 
