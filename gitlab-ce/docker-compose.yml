@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  g-gitlab-ce:
+    build: ./build/gitlab-ce
+    env_file: 
+      - ./env/gitlab-ce/default.env
+    image: g-gitlab-ce:1.0.0
+    container_name: g-gitlab-ce
+    restart: always
+    ports:
+      - "10443:443"
+      - "10022:22"
+      - "10080:80"
+    volumes:
+      - ./data-volumes/gitlab-ce/share-file:/share-file
+      - ./data-volumes/gitlab-ce/config:/etc/gitlab
+      - ./data-volumes/gitlab-ce/log:/var/log/gitlab
+      - ./data-volumes/gitlab-ce/data:/var/opt/gitlab
