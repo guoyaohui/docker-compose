@@ -32,8 +32,9 @@ EOF
 chmod +x ${master_init_script_file}
 
 # 初始化k8s集群
-rm -rf tmp-log.out
-${master_init_script_file} >> tmp-log.out
+k8s_log_file_name="./tmp-log.out"
+rm -rf ${k8s_log_file_name}
+${master_init_script_file} >> ${k8s_log_file_name}
 echo "执行完kubeadm init命令"
 rm -rf ${master_init_script_file}
 
@@ -73,7 +74,7 @@ source /etc/profile
 # 添加slave的节点的启动脚本
 slave_node_start_file_name="slave-node-start.sh"
 rm -rf ${slave_node_start_file_name}
-sed -n '/^.*kubeadm join.*$/' tmp-log.out  >> ${slave_node_start_file_name}
+sed -n '/^.*kubeadm join.*$/' ${k8s_log_file_name}  >> ${slave_node_start_file_name}
 echo "请访问${master_node_ip}:30090以查看kubernetes的仪表盘"
 
 
