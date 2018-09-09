@@ -81,17 +81,17 @@ sed -i '1, ${s/^ *//g}' ${slave_node_start_file_name}
 # 配置kubeconfig配置
 cat << EOF >> ${slave_node_start_file_name}
 
-savle_node_conf="admin.conf"
-rm -rf \${savle_node_conf}
-cat << EOF > \${savle_node_conf}
+slave_machine_etc_conf_file="/etc/kubernetes/admin.conf"
+rm -rf \${slave_machine_etc_conf_file}
+cat << EOF > \${slave_machine_etc_conf_file}
 EOF
 cat /etc/kubernetes/admin.conf >> ${slave_node_start_file_name}
 echo "EOF" >> ${slave_node_start_file_name}
 
 cat << EOF >> ${slave_node_start_file_name}
-chmod 777 \${savle_node_conf}
+chmod 777 \${slave_machine_etc_conf_file}
 sed -i '/^.*KUBECONFIG.*/d' /etc/profile
-echo "export KUBECONFIG=\${savle_node_conf}" >> /etc/profile
+echo "export KUBECONFIG=\${slave_machine_etc_conf_file}" >> /etc/profile
 source /etc/profile
 EOF
 echo "请访问${master_node_ip}:30090以查看kubernetes的仪表盘"
