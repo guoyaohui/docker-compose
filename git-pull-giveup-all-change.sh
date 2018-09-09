@@ -3,6 +3,5 @@
 git checkout . && git clean -xdf
 git pull
 # 修改当前同级目录和同级目录的子目录的sh文件的执行权限
-chmod +x ./*.sh
-chmod +x ./**/*.sh
+find ./ -name "*.sh"|xargs chmod +x
 echo "完成"
