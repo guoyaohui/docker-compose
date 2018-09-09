@@ -1,1 +1,1 @@
-git clean -xdf $1
+git checkout $1 && git clean -xdf $1
