@@ -20,4 +20,4 @@ EOF
 source /etc/profile
 
 # 5. 验证安装
-java -version
+mvn -version
