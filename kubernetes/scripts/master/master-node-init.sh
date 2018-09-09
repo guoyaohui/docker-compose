@@ -75,18 +75,8 @@ source /etc/profile
 slave_node_start_file_name="slave-node-start.sh"
 rm -rf ${slave_node_start_file_name}
 sed -n '/^.*kubeadm join.*$/'p ${k8s_log_file_name}  >> ${slave_node_start_file_name}
-
-# 删除salve脚本的开头的空行
 sed -i '1, ${s/^ *//g}' ${slave_node_start_file_name}
-sed -i '$a/^$/' ${slave_node_start_file_name}
-# 配置kubeconfig配置
-k8s_log_file_name="tmp-log.out"
-slave_node_start_file_name="slave-node-start-test.sh"
-rm -rf ${slave_node_start_file_name}
-sed -n '/^.*kubeadm join.*$/'p ${k8s_log_file_name}  >> ${slave_node_start_file_name}
 
-# 删除salve脚本的开头的空行
-sed -i '1, ${s/^ *//g}' ${slave_node_start_file_name}
 # 配置kubeconfig配置
 cat << EOF >> ${slave_node_start_file_name}
 
@@ -98,10 +88,9 @@ cat /etc/kubernetes/admin.conf >> ${slave_node_start_file_name}
 echo "EOF" >> ${slave_node_start_file_name}
 
 cat << EOF >> ${slave_node_start_file_name}
-
 chmod 777 \${savle_node_conf}
 sed -i '/^.*KUBECONFIG.*/d' /etc/profile
 echo "export KUBECONFIG=\${savle_node_conf}" >> /etc/profile
 source /etc/profile
-EO
+EOF
 echo "请访问${master_node_ip}:30090以查看kubernetes的仪表盘"
