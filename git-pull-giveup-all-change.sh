@@ -3,3 +3,4 @@
 git checkout . && git clean -xdf
 git pull
 chmod +x ./*.sh
+echo "完成"
