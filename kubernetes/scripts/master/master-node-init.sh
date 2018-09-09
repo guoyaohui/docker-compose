@@ -74,7 +74,10 @@ source /etc/profile
 # 添加slave的节点的启动脚本
 slave_node_start_file_name="slave-node-start.sh"
 rm -rf ${slave_node_start_file_name}
-sed -n '/^.*kubeadm join.*$/' ${k8s_log_file_name}  >> ${slave_node_start_file_name}
+sed -n '/^.*kubeadm join.*$/'p ${k8s_log_file_name}  >> ${slave_node_start_file_name}
+
+# 删除salve脚本的开头的空行
+sed -i '1, ${s/^ *//g}' ${slave_node_start_file_name}
 echo "请访问${master_node_ip}:30090以查看kubernetes的仪表盘"
 
 
