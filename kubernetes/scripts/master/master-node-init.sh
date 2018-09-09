@@ -1,4 +1,16 @@
 #!/bin/bash
+# 清理集群
+nodeList=(k8s-01 k8s-02 k8s-03 )
+for nodeName in ${nodeList[@]} ; do
+kubectl drain $nodeName --delete-local-data --force --ignore-daemonsets
+kubectl delete node $nodeName
+done
+
+# 重置网络
+kubeadm reset
+
+echo "清理集群完毕"
+
 # 一、初始化k8s集群
 master_init_script_file="./kubeadm-init.sh"
 # 如果repo存在则删除
