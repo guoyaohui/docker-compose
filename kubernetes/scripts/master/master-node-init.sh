@@ -80,12 +80,20 @@ sed -n '/^.*kubeadm join.*$/'p ${k8s_log_file_name}  >> ${slave_node_start_file_
 sed -i '1, ${s/^ *//g}' ${slave_node_start_file_name}
 sed -i '$a/^$/' ${slave_node_start_file_name}
 # 配置kubeconfig配置
+cat << EOF > ${slave_node_start_file_name}
+savle_node_conf="admin.conf"
+rm -rf \${savle_node_conf}
+cat << \EOF > \${savle_node_conf}
+EOF
 cat /etc/kubernetes/admin.conf >> ${slave_node_start_file_name}
+cat << EOF > ${slave_node_start_file_name}
+\EOF
+EOF
 
 cat << EOF > ${slave_node_start_file_name}
-chmod 777 ${slave_node_start_file_name}
+chmod 777 \${savle_node_conf}
 sed -i '/^.*KUBECONFIG.*/d' /etc/profile
-echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> /etc/profile
+echo "export KUBECONFIG=\${savle_node_conf}" >> /etc/profile
 source /etc/profile
 EOF
 echo "请访问${master_node_ip}:30090以查看kubernetes的仪表盘"
