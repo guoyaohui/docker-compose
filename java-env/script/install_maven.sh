@@ -1,4 +1,5 @@
-maven_location="jdk-8u65.tar.gz"
+echo "maven.tar.gz必须要和当前的脚本放在同一个目录下"
+maven_location="maven.tar.gz"
 install_maven_location="/usr/java/maven/"
 
 rm -rf ${install_maven_location}
@@ -14,7 +15,7 @@ sed -i '/^.*export PATH=${PATH}:${MAVEN_HOME}.*/d' /etc/profile
 
 cat << EOF >> /etc/profile
 export MAVEN_HOME=${install_maven_location}apache-maven-3.5.4
-export PATH=${PATH}:${MAVEN_HOME}/bin
+export PATH=\${PATH}:\${MAVEN_HOME}/bin
 EOF
 # 4.立即生效
 source /etc/profile

@@ -1,3 +1,4 @@
+echo "jdk-8u65.tar.gz必须要和当前的脚本放在同一个目录下"
 java_linux="jdk-8u65.tar.gz"
 install_file_dir="/usr/java/8/"
 
